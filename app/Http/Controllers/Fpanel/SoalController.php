@@ -150,9 +150,7 @@ class SoalController extends Controller
     public function update_disc(Request $request)
     {
         $disc = QuestionDisc::findOrFail($request->question_id);
-
-
-        // return response()->json($request->all(), 200, [], JSON_PRETTY_PRINT);
+        // return response()->json($request->statements, 200, [], JSON_PRETTY_PRINT);
 
         if ($disc) {
 
@@ -161,12 +159,9 @@ class SoalController extends Controller
             ]);
 
             foreach ($request->statements_id as $index => $statement) {
-                // $disc->statements()->update([
-                //     'id'        => $request->statements_id,
-                //     'statement' => $request->statement,
-                // ]);
-
-                // return response()->json($request->statements[$index], 200, [], JSON_PRETTY_PRINT);
+                QuestionStatementDisc::where('id', $request->statements_id[$index])->update([
+                    'statement' => $request->statements[$index]
+                ]);
             }
 
             return redirect()->route('fpanel.soal.disc')->with('success', 'Soal disc berhasil diubah!');
