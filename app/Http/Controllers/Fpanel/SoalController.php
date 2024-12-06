@@ -150,21 +150,69 @@ class SoalController extends Controller
     public function update_disc(Request $request)
     {
         $disc = QuestionDisc::findOrFail($request->question_id);
-        // return response()->json($request->statements, 200, [], JSON_PRETTY_PRINT);
 
         if ($disc) {
+
+            // $existingStatements = $disc->statements;
+            // // $newStatements = $request->statements_id; 
+            // $newStatements = $request->statements;
+
+            // // return response()->json($existingStatements, 200, [], JSON_PRETTY_PRINT);
+
+            // foreach ($newStatements as $index => $newStatement) {
+            //     // $newStatementId = $request->statements_id[$index];
+            //     $newStatementId = $request->statements_id;
+
+            //     $existingStatement = $existingStatements->firstWhere('id', $newStatementId);
+
+            //     return response()->json($existingStatement, 200, [], JSON_PRETTY_PRINT);
+
+            //     // if ($existingStatement) {
+            //     //     $existingStatement->update([
+            //     //         'statement' => $newStatement,
+            //     //     ]);
+            //     // } else {
+            //     //     QuestionStatementDisc::create([
+            //     //         'question_disc_id' => $disc->id,
+            //     //         'statement' => $newStatement,
+            //     //     ]);
+            //     // }
+            // }
 
             $disc->update([
                 'question_text'     => $request->question_text,
             ]);
 
-            foreach ($request->statements_id as $index => $statement) {
+            foreach ($request->statements as $index => $statement) {
                 QuestionStatementDisc::where('id', $request->statements_id[$index])->update([
                     'statement' => $request->statements[$index]
                 ]);
+                // echo $statement;
+                // return response()->json($statement, 200, [], JSON_PRETTY_PRINT);
             }
 
             return redirect()->route('fpanel.soal.disc')->with('success', 'Soal disc berhasil diubah!');
+        }
+        return redirect()->route('fpanel.soal.disc')->with('error', 'Not found!');
+    }
+
+    public function destroy_disc($id)
+    {
+        $question = QuestionDisc::findOrFail($id);
+        if ($question) {
+            try {
+                if ($question->statements->count() > 0) {
+                    QuestionStatementDisc::where('question_disc_id', $id)->delete();
+                }
+
+                $question->delete();
+
+                return redirect()->route('fpanel.soal.disc')->with('success', 'Question and its related statements have been deleted successfully.');
+            } catch (\Exception $e) {
+                return redirect()->route('fpanel.soal.disc')->with('error', 'Not found!');
+            }
+        } else {
+            return redirect()->route('fpanel.soal.disc')->with('error', 'Not found!');
         }
     }
 }

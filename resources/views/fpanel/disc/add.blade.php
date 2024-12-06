@@ -67,12 +67,33 @@
             const statementsDiv = document.getElementById('statements');
 
             addStatementButton.addEventListener('click', () => {
+
+                const inputWrapper = document.createElement('div');
+                inputWrapper.classList.add('d-flex', 'align-items-center', 'mb-2');
+
                 const input = document.createElement('input');
                 input.type = 'text';
                 input.name = 'statements[]';
                 input.className = 'form-control mb-2';
+
+                const removeButton = document.createElement('button');
+                removeButton.type = 'button';
+                removeButton.className = 'ms-2 btn btn-danger mb-2';
+                removeButton.innerText = 'Hapus';
+
+                removeButton.addEventListener('click', () => {
+                    statementsDiv.removeChild(inputWrapper);
+                });
+
                 input.required = true;
-                statementsDiv.appendChild(input);
+                // statementsDiv.appendChild(input);
+
+                // Menambahkan input dan tombol hapus ke wrapper
+                inputWrapper.appendChild(input);
+                inputWrapper.appendChild(removeButton);
+
+                // Menambahkan wrapper ke dalam div statements
+                statementsDiv.appendChild(inputWrapper);
             });
 
 

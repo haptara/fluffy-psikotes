@@ -36,12 +36,12 @@
                                     @endphp
                                     @foreach ($questions as $question)
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $question->question_text }}</td>
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{ ucwords($question->question_text) }}</td>
                                             <td>
                                                 <ul>
                                                     @foreach ($question->statements as $statement)
-                                                        <li>{{ $statement->statement }}</li>
+                                                        <li>{{ ucwords($statement->statement) }}</li>
                                                     @endforeach
                                                 </ul>
                                             </td>
@@ -50,10 +50,11 @@
                                                 {{-- {{ route('admin.questions.destroy', $question->id) }} --}}
                                                 <a href="{{ route('fpanel.soal.disc.edit', $question->id) }}"
                                                     class="btn btn-icon btn-sm"><i class='bx bx-edit-alt'></i></a>
-                                                <form action="javascript:void(0);" method="POST" class="d-inline">
+                                                <form action="{{ route('fpanel.hasil.disc.destroy', $question->id) }}"
+                                                    method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-icon btn-sm"><i
+                                                    <button type="button" class="btn btn-icon btn-sm btn-delete"><i
                                                             class='bx bx-trash text-danger'></i></button>
                                                 </form>
                                             </td>
@@ -72,14 +73,46 @@
 
     @push('script')
         <script>
-            $('#data-soal-disc').DataTable({
-                responsive: true,
-                layout: {
-                    topStart: {
-                        buttons: ['copy', 'excel', 'pdf']
+            $(document).ready(function() {
+
+                $('#data-soal-disc').DataTable({
+                    responsive: true,
+                    layout: {
+                        topStart: {
+                            buttons: ['copy', 'excel', 'pdf']
+                        }
                     }
-                }
+                });
+
+                $(document).on('click', '.btn-delete', function(e) {
+                    // alert('hello world')
+                    e.preventDefault();
+
+                    const form = $(this).closest('form');
+                    Swal.fire({
+                        title: 'Apakah Anda yakin?',
+                        text: "Anda tidak bisa mengembalikan ini setelah dihapus!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#2eaff5',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Ya, hapus!',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+                    });
+                });
             });
+
+            @if (session('success'))
+                toastr.success("{{ session('success') }}");
+            @endif
+
+            @if (session('error'))
+                toastr.error("{{ session('error') }}");
+            @endif
         </script>
     @endpush
 </x-app-layout>

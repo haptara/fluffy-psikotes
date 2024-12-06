@@ -44,9 +44,12 @@
                                         <input type="hidden" name="statements_id[]"
                                             class="form-control mb-2 @error('statements_id.*') is-invalid @enderror"
                                             value="{{ $s->id }}">
-                                        <input type="text" name="statements[]"
-                                            class="form-control mb-2 @error('statements.*') is-invalid @enderror"
-                                            value="{{ $s->statement }}">
+                                        <div class="d-flex align-items-center mb-2">
+                                            <input type="text" name="statements[]"
+                                                class="form-control mb-2 @error('statements.*') is-invalid @enderror"
+                                                value="{{ $s->statement }}">
+                                            {{-- <button type="button" class="ms-2 btn btn-danger mb-2">Hapus</button> --}}
+                                        </div>
                                     @endforeach
                                     {{-- @endfor --}}
                                     @error('statements.*')
@@ -55,8 +58,8 @@
                                         </div>
                                     @enderror
                                 </div>
-                                <button type="button" id="add-statement" class="btn btn-secondary btn-sm">Add
-                                    Statement</button>
+                                {{-- <button type="button" id="add-statement" class="btn btn-secondary btn-sm">Add
+                                    Statement</button> --}}
                             </div>
 
                             <button type="submit" id="btnFnz" class="btn btn-primary btnFnz">Save</button>
@@ -75,12 +78,33 @@
             const statementsDiv = document.getElementById('statements');
 
             addStatementButton.addEventListener('click', () => {
+
+                const inputWrapper = document.createElement('div');
+                inputWrapper.classList.add('d-flex', 'align-items-center', 'mb-2');
+
                 const input = document.createElement('input');
                 input.type = 'text';
                 input.name = 'statements[]';
                 input.className = 'form-control mb-2';
+
+                const removeButton = document.createElement('button');
+                removeButton.type = 'button';
+                removeButton.className = 'ms-2 btn btn-danger mb-2';
+                removeButton.innerText = 'Hapus';
+
+                removeButton.addEventListener('click', () => {
+                    statementsDiv.removeChild(inputWrapper);
+                });
+
                 input.required = true;
-                statementsDiv.appendChild(input);
+                // statementsDiv.appendChild(input);
+
+                // Menambahkan input dan tombol hapus ke wrapper
+                inputWrapper.appendChild(input);
+                inputWrapper.appendChild(removeButton);
+
+                // Menambahkan wrapper ke dalam div statements
+                statementsDiv.appendChild(inputWrapper);
             });
 
 

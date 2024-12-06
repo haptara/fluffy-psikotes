@@ -42,7 +42,9 @@
                                         <td>{{ strtoupper($g->group_name) }}</td>
                                         <td>{{ strtoupper($g->test->test_name) }}</td>
                                         <td>{{ $g->order }}</td>
-                                        <th><a href="#">{{ $g->questions->count() }}</a> Soal</th>
+                                        <th><button type="button"
+                                                class="btn btn-icon btn-sm text-info btn-show-soal">{{ $g->questions->count() }}</button>
+                                            Soal</th>
                                         <td>{{ $g->duration }} Menit</td>
                                         <td class="text-center">
                                             <button type="button" class="btn btn-icon btn-sm btn-edit"

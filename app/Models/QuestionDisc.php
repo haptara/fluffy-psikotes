@@ -19,7 +19,7 @@ class QuestionDisc extends Model
      */
     public function statements()
     {
-        return $this->hasMany(QuestionStatementDisc::class);
+        return $this->hasMany(QuestionStatementDisc::class, 'question_disc_id');
     }
 
     /**

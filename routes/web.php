@@ -115,6 +115,7 @@ Route::middleware(['auth', 'verified', 'role:1'])->group(function () {
     Route::post('/fpanel/soal/disc/add', [SoalController::class, 'store_disc']);
     Route::get('/fpanel/soal/disc/edit/{id}', [SoalController::class, 'edit_disc'])->name('fpanel.soal.disc.edit');
     Route::post('/fpanel/soal/disc/update', [SoalController::class, 'update_disc']);
+    Route::delete('/fpanel/soal/disc/destroy/{id}', [SoalController::class, 'destroy_disc'])->name('fpanel.hasil.disc.destroy');
 
     // HASIL
     Route::get('/fpanel/hasil/psikotes', [HasilController::class, 'psikotes'])->name('fpanel.hasil.psikotes');
