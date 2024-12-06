@@ -12,6 +12,7 @@ use App\Models\ResultTests;
 use App\Models\Tests;
 use App\Models\UserTestProgress;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class TesController extends Controller
 {
@@ -28,20 +29,27 @@ class TesController extends Controller
     {
         $test = Tests::where('slug', $testId)->firstOrFail();
 
+        if ($testId == "disc") {
+            return view('upanel.start', [
+                'title'         => 'Start Test',
+                'tes'           => $test,
+            ]);
+        }
+
         // // Cek apakah tes ini sudah pernah dikerjakan oleh user
-        // $lastAnswer = Answerpsikotes::where('user_id', auth()->id())
-        //     ->where('question_id', $test->id)
-        //     ->latest('created_at')
-        //     ->first();
+        $lastAnswer = Answerpsikotes::where('user_id', auth()->id())
+            ->where('question_id', $test->id)
+            ->latest('created_at')
+            ->first();
 
         // // // Jika sudah ada jawaban sebelumnya, lanjutkan ke grup soal terakhir
-        // if ($lastAnswer) {
-        //     $lastQuestionGroup = Question::find($lastAnswer->question_id)->questionGroup;
-        //     return redirect()->route('test.group', [
-        //         'testId' => $testId,
-        //         'groupOrder' => $lastQuestionGroup->order,
-        //     ]);
-        // }
+        if ($lastAnswer) {
+            $lastQuestionGroup = Question::find($lastAnswer->question_id)->questionGroup;
+            return redirect()->route('test.group', [
+                'testId' => $testId,
+                'groupOrder' => Crypt::encryptString($lastQuestionGroup->order),
+            ]);
+        }
 
         // echo json_encode($lastAnswer, JSON_PRETTY_PRINT);
 
@@ -54,8 +62,11 @@ class TesController extends Controller
         // return redirect()->route('test.group', ['testId' => $testId, 'groupOrder' => 1]);
     }
 
-    public function showTest(Request $request, $testId, $groupOrder = 1)
+    public function showTest(Request $request, $testId, $groupOrderId = 1)
     {
+
+        $groupOrder = Crypt::decryptString($groupOrderId);
+
 
         $test = Tests::where('slug', $testId)->firstOrFail();
         $currentGroup = QuestionGroup::where('test_id', $test->id)
@@ -147,6 +158,9 @@ class TesController extends Controller
         // GET SLUG
         $tes = Tests::where('id', $testId)->firstOrFail();
 
+        $groupOrder = Crypt::decryptString($groupOrder);
+        // dd($groupOrder);
+
         // Catat waktu selesai pengerjaan grup soal
         $currentGroup = QuestionGroup::where('test_id', $testId)
             ->orderBy('order')
@@ -165,8 +179,10 @@ class TesController extends Controller
             ->first();
 
         // // echo json_encode($jawaban, JSON_PRETTY_PRINT);
+        $groupOrderNext = Crypt::encryptString($groupOrder + 1);
+
         if ($nextGroup) {
-            return redirect()->route('test.group', ['testId' => $tes->slug, 'groupOrder' => $groupOrder + 1]);
+            return redirect()->route('test.group', ['testId' => $tes->slug, 'groupOrder' => $groupOrderNext]);
         }
 
         return redirect()->route('tes.selesai', $tes->slug)->with('success', 'Tes selesai!');

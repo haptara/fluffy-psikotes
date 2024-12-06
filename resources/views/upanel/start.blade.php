@@ -89,7 +89,10 @@
                             Mulai Kerjakan
                         </a>
                     @else
-                        <a href="{{ route('test.group', ['testId' => $tes->slug, 'groupOrder' => 1]) }}"
+                        @php
+                            $groupOrder = Crypt::encryptString(1);
+                        @endphp
+                        <a href="{{ route('test.group', ['testId' => $tes->slug, 'groupOrder' => $groupOrder]) }}"
                             class="btn btn-primary">
                             Mulai Kerjakan
                         </a>

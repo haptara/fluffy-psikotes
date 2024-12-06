@@ -6,9 +6,11 @@ use App\Http\Controllers\Fpanel\PesertaController;
 use App\Http\Controllers\Fpanel\SettingController;
 use App\Http\Controllers\Fpanel\SoalController;
 use App\Http\Controllers\Fpanel\UserController;
+use App\Http\Controllers\Fpanel\UsersPelanggaranController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Upanel\BiodataPesertaController;
 use App\Http\Controllers\Upanel\DashboardController as UpanelDashboardController;
+use App\Http\Controllers\Upanel\PelanggaranController;
 use App\Http\Controllers\Upanel\TesController;
 use Illuminate\Support\Facades\Route;
 
@@ -45,7 +47,7 @@ Route::middleware('auth')->group(function () {
 
 
 // USER PANEL
-Route::middleware(['auth', 'verified', 'role:2'])->group(function () {
+Route::middleware(['auth', 'verified', 'role:2', 'pelanggaran'])->group(function () {
 
     // VALIDASI LINK
     Route::get('/t/{key}', [UpanelDashboardController::class, 'get_link']);
@@ -67,6 +69,10 @@ Route::middleware(['auth', 'verified', 'role:2'])->group(function () {
     // Route::get('/upanel/tes/disc', [TesController::class, 'disc'])->name('upanel.tes.disc');
     Route::get('/upanel/tes/{testId}', [TesController::class, 'disc'])->name('upanel.test.disc');
     Route::post('/upanel/test', [TesController::class, 'submitTest'])->name('disc.submit');
+
+
+    Route::post('/upanel/pelanggaran', [PelanggaranController::class, 'store']);
+    Route::get('/upanel/pelanggaran/show', [PelanggaranController::class, 'show']);
 });
 
 
@@ -130,6 +136,9 @@ Route::middleware(['auth', 'verified', 'role:1'])->group(function () {
     Route::post('/fpanel/user', [UserController::class, 'store']);
     Route::delete('/fpanel/user/destroy/{id}', [UserController::class, 'destroy']);
     Route::post('/fpanel/user/update', [UserController::class, 'update']);
+
+    Route::get('/fpanel/pelanggaran', [UsersPelanggaranController::class, 'index'])->name('fpanel.pelanggaran');
+    Route::delete('/fpanel/pelanggaran/destroy/{id}', [UsersPelanggaranController::class, 'destroy']);
 });
 
 require __DIR__ . '/auth.php';

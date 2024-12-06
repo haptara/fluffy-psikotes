@@ -130,6 +130,14 @@
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text" data-i18n="Misc">Misc</span>
         </li>
+        <li class="menu-item {{ request()->is('fpanel/pelanggaran*') ? 'active' : '' }}">
+            <a href="{{ route('fpanel.pelanggaran') }}" class="menu-link">
+                <i class='menu-icon tf-icons bx bx-bug'></i>
+                <div class="text-truncate" data-i18n="Pelanggaran">
+                    Pelanggaran
+                </div>
+            </a>
+        </li>
         <li class="menu-item {{ request()->is('fpanel/user*') ? 'active' : '' }}">
             <a href="{{ route('fpanel.user') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user"></i>

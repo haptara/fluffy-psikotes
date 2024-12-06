@@ -45,6 +45,8 @@
     @if (auth()->user()->role_id === 2)
         <link rel="stylesheet" href="{{ asset('assets/css/pages/front-page.css') }}" />
         <link rel="stylesheet" href="{{ asset('assets/css/pages/front-page-help-center.css') }}" />
+
+        <link rel="stylesheet" href="{{ asset('assets/vendor/libs/spinkit/spinkit.css') }}" />
     @endif
 
     <!-- Vendors CSS -->
@@ -247,6 +249,10 @@
 
     @if (auth()->user()->role_id === 2)
         <script src="{{ asset('assets/js/front-main.js') }}"></script>
+
+        <script src="{{ asset('assets/vendor/libs/block-ui/block-ui.js') }}"></script>
+
+        <script src="{{ asset('assets/js/extended-ui-blockui.js') }}"></script>
     @endif
 
     <script src=" {{ asset('assets/js/ui-toasts.js') }}"></script>
@@ -259,6 +265,7 @@
             "timeOut": "5000",
         };
     </script>
+
     @stack('script')
 </body>
 

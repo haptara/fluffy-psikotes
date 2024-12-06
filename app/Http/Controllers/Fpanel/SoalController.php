@@ -149,52 +149,92 @@ class SoalController extends Controller
 
     public function update_disc(Request $request)
     {
+        $request->validate([
+            'question_text' => 'required|string|max:255',
+            'statements' => 'required|array|min:1',
+            'statements.*' => 'required|string|max:255',
+        ]);
+
         $disc = QuestionDisc::findOrFail($request->question_id);
 
         if ($disc) {
+            $jumExistState  = $disc->statements->count();
+            $existingStatements = $disc->statements;
 
-            // $existingStatements = $disc->statements;
-            // // $newStatements = $request->statements_id; 
-            // $newStatements = $request->statements;
+            $jumNewState    = count($request->statements);
+            $newStatements  = $request->statements;
+            $newStatementsId = $request->statements_id;
 
-            // // return response()->json($existingStatements, 200, [], JSON_PRETTY_PRINT);
+            if ($jumNewState == $jumExistState) { // UPDATE
+                foreach ($request->statements as $index => $statement) {
+                    $newStatementId = $request->statements_id[$index];
+                    QuestionStatementDisc::where('id', $newStatementId)->update([
+                        'statement' => $statement
+                    ]);
+                }
+            } else if ($jumNewState > $jumExistState) { // TAMBAH
+                foreach ($request->statements as $index => $statement) {
+                    $newStatementId = $request->statements_id[$index] ?? null;
 
-            // foreach ($newStatements as $index => $newStatement) {
-            //     // $newStatementId = $request->statements_id[$index];
-            //     $newStatementId = $request->statements_id;
+                    if ($newStatementId) {
+                        QuestionStatementDisc::where('id', $newStatementId)->update([
+                            'statement' => $statement
+                        ]);
+                    } else {
+                        $disc->statements()->create(['statement' => $statement]);
+                    }
+                }
+            } else if ($jumNewState < $jumExistState) { // DELETE
+                $existingIds = $disc->statements->pluck('id')->toArray();
+                $idsToKeep = $request->statements_id;
 
-            //     $existingStatement = $existingStatements->firstWhere('id', $newStatementId);
+                $idsToDelete = array_diff($existingIds, $idsToKeep);
 
-            //     return response()->json($existingStatement, 200, [], JSON_PRETTY_PRINT);
+                QuestionStatementDisc::whereIn('id', $idsToDelete)->delete();
 
-            //     // if ($existingStatement) {
-            //     //     $existingStatement->update([
-            //     //         'statement' => $newStatement,
-            //     //     ]);
-            //     // } else {
-            //     //     QuestionStatementDisc::create([
-            //     //         'question_disc_id' => $disc->id,
-            //     //         'statement' => $newStatement,
-            //     //     ]);
-            //     // }
-            // }
-
-            $disc->update([
-                'question_text'     => $request->question_text,
-            ]);
-
-            foreach ($request->statements as $index => $statement) {
-                QuestionStatementDisc::where('id', $request->statements_id[$index])->update([
-                    'statement' => $request->statements[$index]
-                ]);
-                // echo $statement;
-                // return response()->json($statement, 200, [], JSON_PRETTY_PRINT);
+                foreach ($request->statements as $index => $statement) {
+                    $newStatementId = $request->statements_id[$index];
+                    QuestionStatementDisc::where('id', $newStatementId)->update([
+                        'statement' => $statement
+                    ]);
+                }
             }
+
+            // ===========================
+            // Update main Question DISC text
+            // ===========================
+            $disc->update([
+                'question_text' => $request->question_text,
+            ]);
 
             return redirect()->route('fpanel.soal.disc')->with('success', 'Soal disc berhasil diubah!');
         }
-        return redirect()->route('fpanel.soal.disc')->with('error', 'Not found!');
+
+        // return response()->json(['message' => 'Question DISC not found'], 404);
     }
+
+
+    // public function update_disc(Request $request)
+    // {
+    //     $disc = QuestionDisc::findOrFail($request->question_id);
+
+    //     if ($disc) {
+
+    //         $disc->update([
+    //             'question_text'     => $request->question_text,
+    //         ]);
+
+    //         foreach ($request->statements as $index => $statement) {
+    //             QuestionStatementDisc::where('id', $request->statements_id[$index])->update([
+    //                 'statement' => $request->statements[$index]
+    //             ]);
+    //             // return response()->json($statement, 200, [], JSON_PRETTY_PRINT);
+    //         }
+
+    //         return redirect()->route('fpanel.soal.disc')->with('success', 'Soal disc berhasil diubah!');
+    //     }
+    //     return redirect()->route('fpanel.soal.disc')->with('error', 'Not found!');
+    // }
 
     public function destroy_disc($id)
     {

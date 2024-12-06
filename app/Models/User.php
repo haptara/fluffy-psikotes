@@ -67,4 +67,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(ResultTests::class);
     }
+
+    public function pelanggarans()
+    {
+        return $this->belongsTo(UsersPelanggarans::class);
+    }
 }

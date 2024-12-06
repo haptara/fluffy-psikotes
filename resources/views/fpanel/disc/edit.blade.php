@@ -21,6 +21,15 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <form action="/fpanel/soal/disc/update" method="POST" autocomplete="off">
                             @csrf
                             <div class="mb-3">
@@ -43,12 +52,13 @@
                                     @foreach ($questions->statements as $index => $s)
                                         <input type="hidden" name="statements_id[]"
                                             class="form-control mb-2 @error('statements_id.*') is-invalid @enderror"
-                                            value="{{ $s->id }}">
-                                        <div class="d-flex align-items-center mb-2">
+                                            value="{{ $s->id }}" id="statement-id-{{ $s->id }}">
+                                        <div class="d-flex align-items-center mb-2" id="statement-{{ $s->id }}">
                                             <input type="text" name="statements[]"
                                                 class="form-control mb-2 @error('statements.*') is-invalid @enderror"
                                                 value="{{ $s->statement }}">
-                                            {{-- <button type="button" class="ms-2 btn btn-danger mb-2">Hapus</button> --}}
+                                            <button type="button" class="ms-2 btn btn-danger mb-2 hapus-field"
+                                                data-id="{{ $s->id }}">Hapus</button>
                                         </div>
                                     @endforeach
                                     {{-- @endfor --}}
@@ -58,8 +68,9 @@
                                         </div>
                                     @enderror
                                 </div>
-                                {{-- <button type="button" id="add-statement" class="btn btn-secondary btn-sm">Add
-                                    Statement</button> --}}
+                                <button type="button" id="add-statement" class="btn btn-secondary btn-sm">Add
+                                    Statement</button>
+                                {{-- <div id="add-statement"></div> --}}
                             </div>
 
                             <button type="submit" id="btnFnz" class="btn btn-primary btnFnz">Save</button>
@@ -105,6 +116,14 @@
 
                 // Menambahkan wrapper ke dalam div statements
                 statementsDiv.appendChild(inputWrapper);
+            });
+
+            // =================== ELEMENT EDIT ===============
+            $(document).on('click', '.hapus-field', function() {
+                var itemId = $(this).data('id');
+
+                $('#statement-' + itemId).remove();
+                $('#statement-id-' + itemId).remove();
             });
 
 
