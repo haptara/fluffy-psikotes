@@ -42,9 +42,13 @@
                                         <td>{{ strtoupper($g->group_name) }}</td>
                                         <td>{{ strtoupper($g->test->test_name) }}</td>
                                         <td>{{ $g->order }}</td>
-                                        <th><button type="button"
-                                                class="btn btn-icon btn-sm text-info btn-show-soal">{{ $g->questions->count() }}</button>
-                                            Soal</th>
+                                        <td>
+                                            <span class="text-primary">{{ $g->questions->count() }}</span>
+                                            Soal
+                                        </td>
+                                        {{-- <th><button type="button" class="btn btn-icon btn-sm text-info btn-show-soal"
+                                                data-id="{{ $g->id }}">{{ $g->questions->count() }}</button>
+                                            Soal</th> --}}
                                         <td>{{ $g->duration }} Menit</td>
                                         <td class="text-center">
                                             <button type="button" class="btn btn-icon btn-sm btn-edit"
@@ -184,6 +188,24 @@
     </div>
     {{-- END EDIT --}}
 
+    {{-- START DETAIL SOAL --}}
+    <div class="modal fade" id="showModalSoal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel2">Data Soal</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="soalList"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- END DETAIL SOAL --}}
 
     @push('script')
         <script>
@@ -208,6 +230,31 @@
         @push('script')
             <script>
                 $(document).ready(function() {
+
+                    $(document).on('click', '.btn-show-soal', function() {
+                        var itemId = $(this).data('id');
+
+                        $.ajax({
+                            url: `/fpanel/setting/get_soal/${itemId}`,
+                            type: "GET",
+                            cache: false,
+                            success: function(response) {
+                                console.log(response.data)
+                                var obj = response.data.questions;
+                                $('#soalList').empty();
+
+                                $.each(obj, function(key, value) {
+                                    $('#soalList').append('<li>' + key.group_name + '</li>');
+                                });
+
+                                $('#showModalSoal').modal('show');
+                            },
+                            error: function() {
+                                toastr.error("Server Error!");
+                            }
+                        });
+
+                    });
 
                     $(document).on('click', '.btn-edit', function() {
                         var itemId = $(this).data('id');

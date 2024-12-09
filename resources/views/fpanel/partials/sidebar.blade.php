@@ -11,7 +11,7 @@
             <i class="bx bx-chevron-left bx-sm align-middle"></i>
         </a> --}}
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
-            <i class="bx bx-chevron-left bx-md align-middle"></i>
+            <i class="bx bx-chevron-left bx-sm align-middle"></i>
         </a>
 
     </div>

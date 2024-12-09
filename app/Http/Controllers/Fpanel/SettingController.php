@@ -91,6 +91,18 @@ class SettingController extends Controller
         return view('fpanel.setting.group_soal_psikotes', $data);
     }
 
+
+    public function get_soal($id)
+    {
+        $groupSoal = QuestionGroup::with(['test', 'questions'])->findOrFail($id);
+        $getUrutanSoal  = QuestionGroup::select('order')->distinct()->get();
+        return response()->json([
+            'success'   => true,
+            'urutan'    => $getUrutanSoal,
+            'data'      => $groupSoal
+        ]);
+    }
+
     public function store_group_soal(Request $request)
     {
         $request->validate([

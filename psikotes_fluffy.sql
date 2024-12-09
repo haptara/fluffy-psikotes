@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 05, 2024 at 08:17 AM
+-- Generation Time: Dec 06, 2024 at 09:51 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.3.14
 
@@ -142,7 +142,19 @@ INSERT INTO `answer_psikotes` (`id`, `question_id`, `user_id`, `answer_text`, `s
 (83, 3, 12, NULL, NULL, NULL, NULL, 0, '2024-12-04 07:06:51', '2024-12-04 07:06:51', NULL),
 (84, 4, 12, NULL, NULL, NULL, NULL, 0, '2024-12-04 07:06:51', '2024-12-04 07:06:51', NULL),
 (85, 13, 12, NULL, NULL, NULL, NULL, 0, '2024-12-04 07:06:51', '2024-12-04 07:06:51', NULL),
-(86, 14, 12, NULL, 11, NULL, NULL, 0, '2024-12-04 07:07:51', '2024-12-04 07:07:51', NULL);
+(86, 14, 12, NULL, 11, NULL, NULL, 0, '2024-12-04 07:07:51', '2024-12-04 07:07:51', NULL),
+(100, 1, 13, NULL, NULL, NULL, NULL, 0, '2024-12-06 07:48:18', '2024-12-06 07:48:18', NULL),
+(101, 2, 13, NULL, NULL, NULL, NULL, 0, '2024-12-06 07:48:18', '2024-12-06 07:48:18', NULL),
+(102, 3, 13, NULL, NULL, NULL, NULL, 0, '2024-12-06 07:48:18', '2024-12-06 07:48:18', NULL),
+(103, 4, 13, NULL, NULL, NULL, NULL, 0, '2024-12-06 07:48:18', '2024-12-06 07:48:18', NULL),
+(104, 13, 13, NULL, NULL, NULL, NULL, 0, '2024-12-06 07:48:18', '2024-12-06 07:48:18', NULL),
+(111, 1, 17, 'jaban', NULL, NULL, NULL, 0, '2024-12-06 09:33:19', '2024-12-06 09:33:19', NULL),
+(112, 2, 17, NULL, NULL, NULL, NULL, 0, '2024-12-06 09:33:19', '2024-12-06 09:33:19', NULL),
+(113, 3, 17, NULL, NULL, NULL, NULL, 0, '2024-12-06 09:33:19', '2024-12-06 09:33:19', NULL),
+(114, 4, 17, NULL, NULL, NULL, NULL, 0, '2024-12-06 09:33:19', '2024-12-06 09:33:19', NULL),
+(115, 13, 17, NULL, NULL, NULL, NULL, 0, '2024-12-06 09:33:19', '2024-12-06 09:33:19', NULL),
+(116, 14, 17, NULL, 11, NULL, NULL, 0, '2024-12-06 09:34:19', '2024-12-06 09:34:19', NULL),
+(117, 15, 17, NULL, 16, NULL, NULL, 0, '2024-12-06 09:34:20', '2024-12-06 09:34:20', NULL);
 
 -- --------------------------------------------------------
 
@@ -177,7 +189,8 @@ INSERT INTO `biodata_peserta` (`id`, `user_id`, `position_id`, `name`, `gender`,
 (9, 10, 3, 'fulan bin fulan', NULL, NULL, NULL, NULL, NULL, '2024-12-03 02:10:23', '2024-12-03 08:15:33', '2024-12-03 08:15:33'),
 (10, 10, 2, 'fulan bin fulan', 'Perempuan', '2024-12-03', '082246117628', '2024-12-10', 'jl.kurdi', '2024-12-03 08:15:13', '2024-12-03 08:15:13', NULL),
 (13, 12, 1, 'ciro alves bandung poenya', 'Laki-laki', '1992-06-30', '122333443322', '2024-12-03', 'bandung abadi', '2024-12-03 09:17:30', '2024-12-03 09:22:05', NULL),
-(14, 13, 4, 'john doe', NULL, NULL, NULL, NULL, NULL, '2024-12-04 08:11:02', '2024-12-04 08:11:02', NULL);
+(14, 13, 4, 'john doe', 'Perempuan', '2024-12-27', '889000999', '2024-12-13', 'aw', '2024-12-04 08:11:02', '2024-12-06 07:36:36', NULL),
+(15, 17, 2, 'haji naufal firadus', 'Laki-laki', '2024-12-09', '082246117628', '2024-12-20', 'alamat haji naufal firdaus', '2024-12-06 07:01:47', '2024-12-06 07:04:08', NULL);
 
 -- --------------------------------------------------------
 
@@ -393,7 +406,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (34, '2024_11_29_000156_create_answer_disc_table', 9),
 (35, '2024_12_02_082747_create_users_links_table', 10),
 (36, '2024_12_02_132818_create_user_pw_hash_table', 11),
-(37, '2024_12_03_131351_create_result_tests_table', 12);
+(37, '2024_12_03_131351_create_result_tests_table', 12),
+(38, '2024_12_06_153112_create_users_pelanggarans_table', 13);
 
 -- --------------------------------------------------------
 
@@ -518,7 +532,8 @@ INSERT INTO `question_disc` (`id`, `question_text`, `created_at`, `updated_at`, 
 (23, 'gambaran diri', '2024-12-04 06:39:44', '2024-12-04 06:39:44', NULL),
 (24, 'gambaran diri', '2024-12-04 06:42:55', '2024-12-04 06:42:55', NULL),
 (25, 'gambaran diri', '2024-12-04 06:44:52', '2024-12-04 06:44:52', NULL),
-(26, 'gambaran diri', '2024-12-04 06:45:35', '2024-12-04 06:45:35', NULL);
+(26, 'gambaran diri', '2024-12-04 06:45:35', '2024-12-04 06:45:35', NULL),
+(27, 'gambaran mang agus edit', '2024-12-06 06:48:58', '2024-12-06 07:00:46', '2024-12-06 07:00:46');
 
 -- --------------------------------------------------------
 
@@ -544,9 +559,9 @@ CREATE TABLE `question_groups` (
 INSERT INTO `question_groups` (`id`, `test_id`, `group_name`, `order`, `created_at`, `updated_at`, `deleted_at`, `duration`) VALUES
 (1, 1, 'essay', 1, '2024-11-28 02:23:23', NULL, NULL, 1),
 (2, 1, 'test sinonim', 2, '2024-11-28 02:23:23', NULL, NULL, 1),
-(3, 1, 'test antonim', 3, '2024-11-28 02:23:23', NULL, NULL, 1),
-(4, 1, 'test aritmatik', 4, '2024-11-28 02:23:23', NULL, NULL, 2.5),
-(5, 1, 'test deret angkat', 5, '2024-11-28 02:23:23', '2024-12-04 06:23:05', NULL, 2.5);
+(3, 1, 'test antonim', 3, '2024-11-28 02:23:23', NULL, NULL, 120),
+(4, 1, 'test aritmatik', 4, '2024-11-28 02:23:23', NULL, NULL, 120),
+(5, 1, 'test deret angkat', 5, '2024-11-28 02:23:23', '2024-12-04 06:23:05', NULL, 120);
 
 -- --------------------------------------------------------
 
@@ -685,7 +700,9 @@ CREATE TABLE `result_tests` (
 
 INSERT INTO `result_tests` (`id`, `user_id`, `score`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (2, 1, 100, '2024-12-03 07:45:16', NULL, NULL),
-(4, 12, 20, '2024-12-04 07:17:22', '2024-12-04 07:17:22', NULL);
+(4, 12, 20, '2024-12-04 07:17:22', '2024-12-04 07:17:22', NULL),
+(5, 17, 0, '2024-12-06 07:35:11', '2024-12-06 07:35:11', NULL),
+(6, 13, 0, '2024-12-06 07:45:36', '2024-12-06 07:45:36', NULL);
 
 -- --------------------------------------------------------
 
@@ -761,9 +778,10 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `ro
 (9, 'atghata', 'aghata@gmail.com', NULL, '$2y$10$a7QfZB7EJl4HZLqD1oH9buMF9wDR5DKHxrVLs32DVQ8rDLi61bvHe', 2, NULL, '2024-12-03 01:50:31', '2024-12-03 01:50:31'),
 (10, 'fulan bin fulan', 'fulanbinfulan@gmail.com', NULL, '$2y$10$vJ6odNwX5yQTdVkl2E/baOdxg1fpSIDMIIkdPZ/gEI81tdMQ1IsW.', 2, NULL, '2024-12-03 02:10:23', '2024-12-03 04:10:29'),
 (12, 'ciro alves bandung poenya', 'ciroalves@gmail.com', NULL, '$2y$10$VwS4BFPVuF0FHCndPAF3w.Yek84V25d3W70oFLFQtRibqMoCtR7le', 2, NULL, '2024-12-03 09:17:30', '2024-12-03 09:22:05'),
-(13, 'john doe', 'johndoe@gmail.com', NULL, '$2y$10$eHmXcvfRnrtXcJoF0d8F1ugr.T8/VpG7C0G.HIGOHePiJ1k6v8DVS', 2, NULL, '2024-12-04 08:11:02', '2024-12-04 08:11:02'),
+(13, 'john doe', 'johndoe@gmail.com', NULL, '$2y$10$e5dNJX2tS3RrdjrgJJ5pYuXfasX7VYMXOk6H7ACjhvspWcRovq3em', 2, NULL, '2024-12-04 08:11:02', '2024-12-06 07:36:10'),
 (14, 'fluffy baby', 'fluffybaby@gmail.com', NULL, '$2y$10$NdM.ySeSDgsPzsxmMPXyTOlPp3EfZxLyz3.0IfEI4N47v7cGUQnP2', 1, NULL, '2024-12-05 02:38:56', '2024-12-05 02:38:56'),
-(16, 'it fluffy', 'itfluffy@gmail.com', NULL, '$2y$10$KMjYG1flul5GliZKwA/lv.fW3U/iligl0P8/FscN81rSHQmRV.C.y', 1, NULL, '2024-12-05 02:57:23', '2024-12-05 03:22:28');
+(16, 'it fluffy', 'itfluffy@gmail.com', NULL, '$2y$10$KMjYG1flul5GliZKwA/lv.fW3U/iligl0P8/FscN81rSHQmRV.C.y', 1, NULL, '2024-12-05 02:57:23', '2024-12-05 03:22:28'),
+(17, 'haji naufal firadus', 'naufalfirdaus@gmail.com', NULL, '$2y$10$O8bHQVOT66aseMnhvl9Sn.mjrt7179r72NkCOgMaGnT1SnfXWIDJu', 2, NULL, '2024-12-06 07:01:47', '2024-12-06 07:04:08');
 
 -- --------------------------------------------------------
 
@@ -774,8 +792,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `ro
 CREATE TABLE `users_links` (
   `id` bigint UNSIGNED NOT NULL,
   `user_id` bigint UNSIGNED NOT NULL,
-  `link_key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `original_url` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `link_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `original_url` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -789,7 +807,33 @@ INSERT INTO `users_links` (`id`, `user_id`, `link_key`, `original_url`, `expires
 (4, 1, '0NvIufL9NU', 'http://fluffy-psikotest.devapp:8080/t/0NvIufL9NU', NULL, '2024-12-02 04:00:26', '2024-12-02 04:00:26'),
 (5, 7, 'c3O1vO81JJ', 'http://fluffy-psikotest.devapp:8080/t/c3O1vO81JJ', NULL, '2024-12-02 08:03:39', '2024-12-02 08:03:39'),
 (6, 10, '61OFa5MuNX', 'http://fluffy-psikotest.devapp:8080/t/61OFa5MuNX', NULL, '2024-12-03 03:00:35', '2024-12-03 03:00:35'),
-(8, 12, 'ZG4dUyBKaC', 'http://fluffy-psikotest.devapp:8080/t/ZG4dUyBKaC', NULL, '2024-12-03 09:17:35', '2024-12-03 09:17:35');
+(8, 12, 'ZG4dUyBKaC', 'http://fluffy-psikotest.devapp:8080/t/ZG4dUyBKaC', NULL, '2024-12-03 09:17:35', '2024-12-03 09:17:35'),
+(9, 17, 'h6zyZza4ul', 'http://fluffy-psikotest.devapp:8080/t/h6zyZza4ul', NULL, '2024-12-06 07:03:09', '2024-12-06 07:03:09'),
+(10, 13, 'eCEtDzrCwz', 'http://fluffy-psikotest.devapp:8080/t/eCEtDzrCwz', NULL, '2024-12-06 07:35:47', '2024-12-06 07:35:47');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_pelanggarans`
+--
+
+CREATE TABLE `users_pelanggarans` (
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `waktu_pelanggaran` timestamp NOT NULL,
+  `deskripsi` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users_pelanggarans`
+--
+
+INSERT INTO `users_pelanggarans` (`id`, `user_id`, `waktu_pelanggaran`, `deskripsi`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 17, '2024-12-06 09:02:36', 'Pengguna beralih tab', '2024-12-06 09:02:36', '2024-12-06 09:21:06', '2024-12-06 09:21:06'),
+(3, 17, '2024-12-06 09:35:18', 'Pengguna beralih tab', '2024-12-06 09:35:18', '2024-12-06 09:35:18', NULL);
 
 -- --------------------------------------------------------
 
@@ -800,7 +844,7 @@ INSERT INTO `users_links` (`id`, `user_id`, `link_key`, `original_url`, `expires
 CREATE TABLE `user_pw_hash` (
   `id` bigint UNSIGNED NOT NULL,
   `user_id` bigint UNSIGNED NOT NULL,
-  `pw_hash` text COLLATE utf8mb4_unicode_ci,
+  `pw_hash` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -816,10 +860,11 @@ INSERT INTO `user_pw_hash` (`id`, `user_id`, `pw_hash`, `created_at`, `updated_a
 (4, 10, 'cGFzc3dvcmQ=', '2024-12-03 02:10:23', '2024-12-03 04:10:29'),
 (5, 1, 'MzBqdW5pMTk5Nw==', '2024-12-03 04:12:31', '2024-12-03 04:12:31'),
 (7, 12, 'cGFzc3dvcmQ=', '2024-12-03 09:17:31', '2024-12-03 09:17:31'),
-(8, 13, 'SHRMNmQzUlc=', '2024-12-04 08:11:02', '2024-12-04 08:11:02'),
+(8, 13, 'YXc=', '2024-12-04 08:11:02', '2024-12-06 07:36:10'),
 (9, 14, 'cGFzc3dvcmQ=', '2024-12-05 02:38:56', '2024-12-05 02:38:56'),
 (11, 16, 'aGVsbG9mbHVmZnk=', '2024-12-05 02:57:23', '2024-12-05 03:22:28'),
-(12, 2, 'YXc=', '2024-12-05 03:15:34', '2024-12-05 03:21:56');
+(12, 2, 'YXc=', '2024-12-05 03:15:34', '2024-12-05 03:21:56'),
+(13, 17, 'cGFzc3dvcmQ=', '2024-12-06 07:01:47', '2024-12-06 07:01:47');
 
 -- --------------------------------------------------------
 
@@ -858,7 +903,14 @@ INSERT INTO `user_test_progress` (`id`, `user_id`, `test_id`, `question_group_id
 (35, 12, 1, 2, '2024-12-04 07:06:51', '2024-12-04 07:07:51', '2024-12-04 07:06:51', '2024-12-04 07:07:51', NULL),
 (36, 12, 1, 3, '2024-12-04 07:07:51', '2024-12-04 07:08:52', '2024-12-04 07:07:51', '2024-12-04 07:08:52', NULL),
 (37, 12, 1, 4, '2024-12-04 07:08:52', '2024-12-04 07:09:52', '2024-12-04 07:08:52', '2024-12-04 07:09:52', NULL),
-(38, 12, 1, 5, '2024-12-04 07:09:52', '2024-12-04 07:17:22', '2024-12-04 07:09:52', '2024-12-04 07:17:22', NULL);
+(38, 12, 1, 5, '2024-12-04 07:09:52', '2024-12-04 07:17:22', '2024-12-04 07:09:52', '2024-12-04 07:17:22', NULL),
+(49, 13, 1, 1, '2024-12-06 07:48:14', '2024-12-06 07:50:49', '2024-12-06 07:48:14', '2024-12-06 07:50:49', NULL),
+(50, 13, 1, 2, '2024-12-06 07:48:19', '2024-12-06 07:50:49', '2024-12-06 07:48:19', '2024-12-06 07:50:49', NULL),
+(51, 13, 1, 3, '2024-12-06 07:50:22', NULL, '2024-12-06 07:50:22', '2024-12-06 07:50:22', NULL),
+(52, 13, 1, 5, '2024-12-06 07:50:34', NULL, '2024-12-06 07:50:34', '2024-12-06 07:50:34', NULL),
+(57, 17, 1, 1, '2024-12-06 09:33:13', '2024-12-06 09:33:19', '2024-12-06 09:33:13', '2024-12-06 09:33:19', NULL),
+(58, 17, 1, 2, '2024-12-06 09:33:19', '2024-12-06 09:34:20', '2024-12-06 09:33:19', '2024-12-06 09:34:20', NULL),
+(59, 17, 1, 3, '2024-12-06 09:34:20', NULL, '2024-12-06 09:34:20', '2024-12-06 09:34:20', NULL);
 
 --
 -- Indexes for dumped tables
@@ -996,6 +1048,13 @@ ALTER TABLE `users_links`
   ADD KEY `users_links_user_id_foreign` (`user_id`);
 
 --
+-- Indexes for table `users_pelanggarans`
+--
+ALTER TABLE `users_pelanggarans`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `users_pelanggarans_user_id_foreign` (`user_id`);
+
+--
 -- Indexes for table `user_pw_hash`
 --
 ALTER TABLE `user_pw_hash`
@@ -1025,13 +1084,13 @@ ALTER TABLE `answer_disc`
 -- AUTO_INCREMENT for table `answer_psikotes`
 --
 ALTER TABLE `answer_psikotes`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 
 --
 -- AUTO_INCREMENT for table `biodata_peserta`
 --
 ALTER TABLE `biodata_peserta`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `choices`
@@ -1055,7 +1114,7 @@ ALTER TABLE `loker_positions`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -1073,7 +1132,7 @@ ALTER TABLE `questions`
 -- AUTO_INCREMENT for table `question_disc`
 --
 ALTER TABLE `question_disc`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `question_groups`
@@ -1085,13 +1144,13 @@ ALTER TABLE `question_groups`
 -- AUTO_INCREMENT for table `question_statement_disc`
 --
 ALTER TABLE `question_statement_disc`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- AUTO_INCREMENT for table `result_tests`
 --
 ALTER TABLE `result_tests`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -1109,25 +1168,31 @@ ALTER TABLE `tests`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `users_links`
 --
 ALTER TABLE `users_links`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `users_pelanggarans`
+--
+ALTER TABLE `users_pelanggarans`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user_pw_hash`
 --
 ALTER TABLE `user_pw_hash`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `user_test_progress`
 --
 ALTER TABLE `user_test_progress`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- Constraints for dumped tables
@@ -1193,6 +1258,12 @@ ALTER TABLE `result_tests`
 --
 ALTER TABLE `users_links`
   ADD CONSTRAINT `users_links_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `users_pelanggarans`
+--
+ALTER TABLE `users_pelanggarans`
+  ADD CONSTRAINT `users_pelanggarans_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `user_pw_hash`

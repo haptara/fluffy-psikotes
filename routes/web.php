@@ -92,6 +92,8 @@ Route::middleware(['auth', 'verified', 'role:1'])->group(function () {
     Route::post('/fpanel/setting/update_group_soal', [SettingController::class, 'update_group_soal']);
     Route::delete('/fpanel/setting/group_soal/destroy/{post}', [SettingController::class, 'destroy_group_soal'])->name('fpanel.setting.group_soal.destroy');
     Route::get('/fpanel/setting/group_soal/{uid}', [SettingController::class, 'detail_group_soal']);
+    Route::get('/fpanel/setting/get_soal/{uid}', [SettingController::class, 'get_soal']);
+
 
     Route::get('/fpanel/setting/kategori_soal', [SettingController::class, 'kategori_soal'])->name('fpanel.setting.kategori_soal');
     Route::post('/fpanel/setting/kategori_soal', [SettingController::class, 'store_soal']);
